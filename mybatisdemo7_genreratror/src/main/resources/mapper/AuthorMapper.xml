@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.zyfvir.AuthorMapper">
+
+    <resultMap id="authorResult" type="cn.zyfvir.Author">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userInfo" column="user_info"/>
+        <collection property="blogList" ofType="cn.zyfvir.Blog" columnPrefix="blog.">
+            <id property="id" column="id"/>
+            <result property="blogTitle" column="blog_title"/>
+            <result property="blogContent" column="blog_content"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAuthorList" resultMap="authorResult">
+        select
+          A.id,
+          A.user_name,
+          B.id as 'blog.id',
+          B.blog_title as 'blog.blog_title',
+          B.blog_content as 'blog.blog_content'
+        FROM author AS A LEFT JOIN blog as B ON B.author_id = A.id
+    </select>
+</mapper>
