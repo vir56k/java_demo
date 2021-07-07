@@ -8,6 +8,8 @@
 </head>
 <body>
 <h1>这是首页</h1>
-Your Name : ${yourname}
+lastName : ${lastName} </br>
+count : ${count} </br>
+actor : ${actor} </br>
 </body>
 </html>

@@ -1,0 +1,1 @@
+INSERT INTO t_actor VALUES (1,'z','last');

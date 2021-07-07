@@ -4,10 +4,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>HelloWorld page</title>
 </head>
 <body>
-<h1>这是首页</h1>
-Your Name : ${yourname}
+<h1>这是管理页</h1>
 </body>
 </html>
