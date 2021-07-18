@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: consumer
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    consumer:
+      group-id: "myGroup1"
+      client-id: "myGroup1"
+server:
+  port: 8080
+
