@@ -1,0 +1,38 @@
+server:
+  port: 8090
+
+
+spring:
+  application:
+    name: business
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8085 # 指定控制台地址和端口
+        port: 8721 # 这个端口和 Sentinel dashborad 做交互
+      datasource:
+        # 指定一个用于流控规则的数据源（来自nacos)
+        ds2:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            data-id: ${spring.application.name}-flow-rules # 比如流控的规则是 {appName}-flow-rules
+            group-id: SENTINEL_GROUP # 指定的一个分组名
+            data-type: json
+            rule-type: flow
+        # 指定一个用于降级规则的数据源（来自nacos)
+        ds3:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            data-id: ${spring.application.name}-degrade-rules
+            group-id: SENTINEL_GROUP # 指定的一个分组名
+            data-type: json
+            rule-type: degrade
+# 1、spring.cloud.sentinel.transport.dashboard: localhost:8080 指定了 控制台的地址，格式是 consoleIp:port。你需先启动控制台，。
+# 2、spring.cloud.sentinel.transport.port 端口配置会在应用对应的机器上启动一个 Http Server，
+#     该 Server 会与 Sentinel 控制台做交互。比如 Sentinel 控制台添加了一个限流规则，会把规则数据 push 给这个 Http Server 接收，
+#      Http Server 再将规则注册到 Sentinel 中。
+#     若在一个机器上启动多个应用(客户端），则需要分别指定。
+

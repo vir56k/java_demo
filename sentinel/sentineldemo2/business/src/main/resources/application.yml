@@ -1,0 +1,21 @@
+server:
+  port: 8090
+
+
+spring:
+  application:
+    name: business
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080 # 指定控制台地址和端口
+
+# 1、spring.cloud.sentinel.transport.dashboard: localhost:8080 指定了 控制台的地址，格式是 consoleIp:port。你需先启动控制台，。
+# 2、spring.cloud.sentinel.transport.port 端口配置会在应用对应的机器上启动一个 Http Server，
+#     该 Server 会与 Sentinel 控制台做交互。比如 Sentinel 控制台添加了一个限流规则，会把规则数据 push 给这个 Http Server 接收，
+#      Http Server 再将规则注册到 Sentinel 中。
+#     若在一个机器上启动多个应用(客户端），则需要分别指定。
+

@@ -1,0 +1,36 @@
+server:
+  port: 9100
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: busi
+          uri: lb://business
+          predicates:
+            - Path=/busi/**
+          filters:
+            - StripPrefix=1
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      filter:
+        enabled: false
+
+
+# 开启日志，追踪用
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: trace
+#    org.springframework.cloud.loadbalancer: trace
+#    org.springframework.web.reactive: trace
