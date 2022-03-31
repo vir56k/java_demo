@@ -10,7 +10,7 @@
     <name>springwebdemo1</name>
 
     <properties>
-        <springframework.version>4.0.6.RELEASE</springframework.version>
+        <springframework.version>5.3.18</springframework.version>
     </properties>
 
     <dependencies>
