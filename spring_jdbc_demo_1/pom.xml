@@ -13,7 +13,7 @@
         <spring-context-version>5.3.4</spring-context-version>
         <spring-aspects-version>5.3.4</spring-aspects-version>
         <spring-security-version>5.5.1</spring-security-version>
-        <spring-webmvc-version>5.3.4</spring-webmvc-version>
+        <spring-webmvc-version>5.3.18</spring-webmvc-version>
     </properties>
 
     <dependencies>
